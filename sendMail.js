@@ -2,6 +2,7 @@ import formData from 'form-data';
 import Mailgun from 'mailgun.js';
 const mailgun = new Mailgun(formData);
 import dotenv from 'dotenv';
+import { PubSub } from '@google-cloud/pubsub';
 
 dotenv.config();
 
@@ -10,13 +11,12 @@ const DOMAIN = process.env.MAILGUN_DOMAIN || 'cloudnativeapp.me';
 
 const mg = mailgun.client({username: 'api', key: API_KEY});
 
-export const sendMail = async (from, to, subject, text, html) => {
+export const sendMail = async (from, to, subject, html) => {
     try {
         const message = await mg.messages.create(DOMAIN, {
             from: from,
             to: to,
             subject: subject,
-            text: text,
             html: html
         })
     } catch (error) {
