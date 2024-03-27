@@ -13,6 +13,7 @@ const API_KEY = process.env.MAILGUN_API_KEY || 'd4f296f80a260f2c2f0fad5d8599c28a
 const DOMAIN = process.env.MAILGUN_DOMAIN || 'cloudnativeapp.me';
 
 export const listenForMessages = (subscriptionNameOrId, timeout) => {
+  let messageCount = 0;
     const subscription = pubSubClient.subscription(subscriptionNameOrId);
     const mg = mailgun.client({username: 'api', key: API_KEY});
     const messageHandler = message => {
@@ -22,6 +23,7 @@ export const listenForMessages = (subscriptionNameOrId, timeout) => {
       const toMail = messageData.to;
       const subject = messageData.subject;
       const id = messageData.id;
+      messageCount += 1;
 
       // Create a link for the user to verify their email
       const url = `<p>
