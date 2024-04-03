@@ -2,7 +2,6 @@ import formData from 'form-data';
 import Mailgun from 'mailgun.js';
 const mailgun = new Mailgun(formData);
 import dotenv from 'dotenv';
-import { PubSub } from '@google-cloud/pubsub';
 
 dotenv.config();
 
