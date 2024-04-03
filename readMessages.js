@@ -28,8 +28,8 @@ export const listenForMessages = (subscriptionNameOrId, timeout) => {
       // Create a link for the user to verify their email
       const url = `<p>
         Please click on the link below to verify your account:
-        <a href="http://cloudnativeapp.me:3000/verify?token=${id}">
-        http://cloudnativeapp.me:3000/verify?token=${id}
+        <a href="https://cloudnativeapp.me/verify?token=${id}">
+        https://cloudnativeapp.me/verify?token=${id}
         </a>
         </p>`;
       
